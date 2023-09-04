@@ -1,7 +1,9 @@
 # sneaker
 
 A new Flutter project.
-
+![intro](https://github.com/amzEnryu/flutter_sneaker_shop/assets/103646759/a59a5d4a-ac92-4162-9519-34395a74f840)
+![shop](https://github.com/amzEnryu/flutter_sneaker_shop/assets/103646759/783f242b-8812-48e5-bac4-5c98823e638a)
+![cart](https://github.com/amzEnryu/flutter_sneaker_shop/assets/103646759/ab6e1d56-bd06-400a-85af-17e6d90d079d)
 ## Getting Started
 
 This project is a starting point for a Flutter application.
