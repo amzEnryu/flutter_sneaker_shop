@@ -13,7 +13,8 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
-  bool showAll = false;
+  bool _showAll = false;
+  String _searchKeyword = "";
   void addshoeToCart(Shoe shoe) {
     Provider.of<Cart>(context, listen: false).addToCart(shoe);
     showDialog(
@@ -40,14 +41,27 @@ class _ShopPageState extends State<ShopPage> {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
-                  'Search something ...',
-                  style: TextStyle(color: Colors.grey),
+              children: [
+                Expanded(
+                  child: TextField(
+                    onChanged: (keyword) {
+                      setState(() {
+                        _searchKeyword = keyword.toLowerCase();
+                      });
+                    },
+                    decoration: InputDecoration(
+                      hintText: 'Search something ...',
+                      hintStyle: TextStyle(color: Colors.grey),
+                      border: InputBorder.none,
+                    ),
+                  ),
                 ),
-                Icon(
-                  Icons.search,
-                  color: Colors.grey,
+                IconButton(
+                  icon: Icon(
+                    Icons.search,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {},
                 ),
               ],
             ),
@@ -67,7 +81,7 @@ class _ShopPageState extends State<ShopPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  showAll ? 'See all' : 'Hot picks',
+                  _showAll ? 'See all' : 'Hot picks',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -76,11 +90,11 @@ class _ShopPageState extends State<ShopPage> {
                 TextButton(
                   onPressed: () {
                     setState(() {
-                      showAll = !showAll;
+                      _showAll = !_showAll;
                     });
                   },
                   child: Text(
-                    showAll ? 'Hot picks' : 'See all',
+                    _showAll ? 'Hot picks' : 'See all',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.blue,
@@ -96,8 +110,9 @@ class _ShopPageState extends State<ShopPage> {
           //List of shoe for sale
           Expanded(
             child: ListView.builder(
-              itemCount:
-                  showAll ? Provider.of<Cart>(context).getShoeList().length : 4,
+              itemCount: _showAll
+                  ? Provider.of<Cart>(context).getShoeList().length
+                  : 4,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 Shoe shoe = value.getShoeList()[index];

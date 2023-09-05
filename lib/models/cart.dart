@@ -87,7 +87,7 @@ class Cart extends ChangeNotifier {
         double price = double.parse(shoe.price);
         total += price;
       } catch (e) {
-        print("Lỗi: ${e.toString()}");
+        print("Error: ${e.toString()}");
       }
     }
     return total;
